@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "B站语言助手 · 双语声音与三语对照",
+  "version": "1.0.0",
+  "description": "左右耳多语音轨、自由字幕、日中英网页对照与本地日语假名。",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ],
+      "js": [
+        "bilingual.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ],
+      "js": [
+        "vendor/kuromoji.js",
+        "kana.js"
+      ],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": [
+        "core.js",
+        "content.js",
+        "native.js",
+        "stereo.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ],
+      "js": [
+        "unified-ui.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/dict/*"
+      ],
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ]
+    }
+  ]
+}

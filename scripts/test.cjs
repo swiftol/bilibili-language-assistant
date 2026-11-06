@@ -1,0 +1,1 @@
+const fs=require('fs'),cp=require('child_process');fs.mkdirSync('artifacts',{recursive:true});for(const test of ['fast-audio','identity','ears-run','kana','title-clamp','comment-fold','unified']){console.log('Testing '+test);cp.execFileSync(process.execPath,['tests/'+test+'.cjs'],{stdio:'inherit'});}

@@ -1,0 +1,7 @@
+node_modules/
+artifacts/
+releases/
+*.log
+.env
+.env.*
+.DS_Store
