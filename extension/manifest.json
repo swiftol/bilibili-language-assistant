@@ -1,15 +1,35 @@
 {
   "manifest_version": 3,
   "name": "B站语言助手 · 双语声音与三语对照",
-  "version": "1.0.0",
+  "version": "1.4.53",
   "description": "左右耳多语音轨、自由字幕、日中英网页对照与本地日语假名。",
   "content_scripts": [
+    {
+      "matches": ["https://*.bilibili.com/*"],
+      "js": ["compact-header.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    },
     {
       "matches": [
         "https://www.bilibili.com/*"
       ],
       "js": [
-        "bridge.js"
+        "home-link-guard.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": [
+        "watch-later-route.js",
+        "bridge.js",
+        "video-card-context.js",
+        "favorites-bridge.js",
+        "danmaku-bridge.js"
       ],
       "run_at": "document_start",
       "world": "MAIN"
@@ -58,7 +78,57 @@
         "https://space.bilibili.com/*"
       ],
       "js": [
+        "panel-theme.js",
         "unified-ui.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ],
+      "js": [
+        "mobile-ui.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": [
+        "player-ui.js",
+        "auto-quality.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": [
+        "watch-later-route.js",
+        "wheel-config.js",
+        "wheel-settings.js",
+        "video-card-context.js",
+        "card-actions.js",
+        "gestures.js",
+        "external-panel.js",
+        "danmaku.js",
+        "selection-compat.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.bilibili.com/*",
+        "https://t.bilibili.com/*",
+        "https://space.bilibili.com/*"
+      ],
+      "js": [
+        "page-fonts.js"
       ],
       "run_at": "document_idle"
     }
@@ -74,5 +144,13 @@
         "https://space.bilibili.com/*"
       ]
     }
-  ]
+  ],
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_title": "B站语言助手设置",
+    "default_popup": "popup.html"
+  }
 }

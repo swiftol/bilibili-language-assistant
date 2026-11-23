@@ -1,11 +1,17 @@
 {
   "name": "bilibili-language-assistant",
-  "version": "1.0.0",
+  "version": "1.4.53",
   "private": true,
   "description": "Development checks for the Bilibili Language Assistant browser extension",
   "scripts": {
     "check": "node scripts/check.cjs",
-    "test": "node scripts/test.cjs"
+    "test": "node scripts/test.cjs",
+    "build:android": "node scripts/build-android.cjs",
+    "test:live": "node tests/player-live-smoke.cjs",
+    "sync:local": "node scripts/sync-local.cjs",
+    "check:installed": "node scripts/check.cjs ../bili-language-toolkit ../bili-ja-zh-v0.1/bili-ja-zh",
+    "test:background": "node scripts/test-background.cjs",
+    "test:gestures": "node tests/gestures-packaged.cjs"
   },
   "devDependencies": {
     "playwright": "1.64.1",
